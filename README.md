@@ -37,6 +37,7 @@ ___
 
 Then, point the browser to http://localhost:4200/ to start the page.  Clicking the Load button will load only the latest 10 blocks on the eosio blockchain.
 
+Clicking any row will expand the row below to show the raw data for that block.
 
 # About:
 
