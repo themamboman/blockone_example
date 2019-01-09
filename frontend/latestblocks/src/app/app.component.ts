@@ -16,7 +16,8 @@ export class AppComponent {
   public loading = false;
   public selectedRowData = '';
   public selectedRow = -1;
-  
+
+  // set a few initial values and get the table headers
   constructor(private http: HttpClient) {
      this.columns = this.getColumns();
      this.selectedRow = -1;
@@ -34,7 +35,6 @@ export class AppComponent {
 	var output = JSON.parse(JSON.stringify(res) );
 	this.fullData = output.output;
 	this.loading = false;
-        //console.log(this.fullData.length);
 
 	this.getBlockSummary();
 
@@ -45,23 +45,20 @@ export class AppComponent {
         }
      );
   }
- 
-  getBlocks() {
-  
-  }
 
+  // get the table column headers
   getColumns(): string[]{
      return ["ID", "Timestamp", "Action Count"]
   };
 
+  // creates the blocks array of data needed to display on the table
   getBlockSummary() {
      // long conversion from type any[] to parsed data
      var tdata = JSON.parse(JSON.parse(JSON.stringify(this.fullData)));
      var numitems = tdata.length;
+     var obj = {'id':'','timestamp':'','numactions':0, 'index':0, 'fulldata':''};
 
-     //console.log(tdata.length);
-     //console.log(tdata);
-     var obj = {};//{'id':'','timestamp':'','numactions':0};
+     // get the column fields as well as the fulldata (raw block data), if the user clicks a row
      for(var i=0; i<numitems; i++) {
         obj.index = i+1;
 	obj.id = tdata[i].id;
@@ -69,11 +66,14 @@ export class AppComponent {
         obj.numactions = this.getActionCount(tdata[i].transactions);
         obj.fulldata = JSON.stringify(tdata[i],null,4);
 	this.blocks.push(obj);
-	obj = {};
+
+	// force flush the data
+	obj = {'id':'','timestamp':'','numactions':0, 'index':0, 'fulldata':''};
+
      }
-     //     console.log(this.blocks);   
   }
 
+  // loop through a transaction field, looking for trx that is not just a string, add the actions array length
   getActionCount( data ) {
      var map = '';
      var cnt = 0;
@@ -81,7 +81,6 @@ export class AppComponent {
         if( typeof data[i].trx === 'string' ) {
            continue;
         } else {
-	//console.log("found actions in transaction " + i);
            cnt += data[i].trx.transaction.actions.length; 
         }
      }
@@ -89,6 +88,7 @@ export class AppComponent {
      return(cnt);
   }
 
+  // when the user clicks a row, set the row index and make the raw block data (fulldata) available to the view
   clickRow(x) {
   console.log("click " + x.index);
      if(this.selectedRow === x.index) {
@@ -97,7 +97,7 @@ export class AppComponent {
         this.selectedRow = x.index;
      }
      this.selectedRowData = x.fulldata;
-     console.log(this.selectedRowData);
+     //console.log(this.selectedRowData);
   }
 
 }
