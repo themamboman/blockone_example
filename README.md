@@ -13,13 +13,27 @@ Clicking a row will expand it to show the full, raw data.
 
 Both the ng-frontend and the nodejs server must be launched
 
-from the directory ./blockone_example/frontend/latestblocks, run this command to serve the webpage from http://localhost:4200/:
+<u>Frontend:
 
-ng serve --open
+From the directory ./blockone_example/frontend/latestblocks, run this command to install dependencies:
 
-from the directory ./blockone_example/backend/node-api, run this command to start the nodejs listener running on http://localhost:3000/:
+- npm install
 
-npm start
+Then, run this command to serve the webpage from http://localhost:4200/:
+
+- ng serve --open
+
+<u>Backend:
+
+From the directory ./blockone_example/backend/node-api, run this command to install dependencies:
+
+- npm install
+
+Then run this command to start the nodejs listener running on localhost port 3000:
+
+- npm start
+
+___
 
 Then, point the browser to http://localhost:4200/ to start the page.  Clicking the Load button will load only the latest 10 blocks on the eosio blockchain.
 
