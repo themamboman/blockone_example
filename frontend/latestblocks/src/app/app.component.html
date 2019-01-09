@@ -1,0 +1,68 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<script>
+/*
+$('#blocktable tbody').on( 'click', 'tr td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = dt.row( tr );
+        var idx = $.inArray( tr.attr('id'), detailRows );
+ 
+        if ( row.child.isShown() ) {
+            tr.removeClass( 'details' );
+            row.child.hide();
+ 
+            // Remove from the 'open' array
+            detailRows.splice( idx, 1 );
+        }
+        else {
+            tr.addClass( 'details' );
+            row.child( format( row.data() ) ).show();
+ 
+            // Add to the 'open' array
+            if ( idx === -1 ) {
+                detailRows.push( tr.attr('id') );
+            }
+        }
+    } );
+*/
+</script>
+
+<div class="jumbotron" style="text-align:center">
+  <h1>
+  <img src="https://res.cloudinary.com/cryptojobslist/image/upload/v1523456395/lqfxwcrekdvp8riweimi.png" width=50px height=50px> {{ title }}
+  </h1>
+</div>
+
+<div class="row justify-content-center">
+  Click Load to get the lastest 10 blocks on the EOS blockchain
+</div>
+
+<div class="row justify-content-center">
+   <button type="button" class="btn btn-primary" (click)="loadBlocks()">Load</button>
+</div>
+
+<div *ngIf="loading" class="alert alert-warning box-msg text-center" role="alert">
+   <strong>Loading Data for latest 10 blocks </strong>
+</div>
+
+<div class="container" class="row justify-content-center">
+<table class="table-dark table-striped table-hover" width=90% id="blocktable">
+  <thead>
+    <th *ngFor="let col of columns" class="text-center">
+      {{col}}
+    </th>
+  </thead>
+  <ng-container *ngFor="let block of blocks">
+    <tr class="clickable" (click)="clickRow(block)">
+      <!--td> {{block.index}} </td-->
+      <td class="text-center"> {{block.id}} </td>
+      <td class="text-center"> {{block.timestamp}} </td>
+      <td class="text-center"> {{block.numactions}} </td>
+    </tr>
+    <tr *ngIf="selectedRow==block.index"> 
+      <td colspan="3">
+	      <pre><font size=-2 color="#ffffff">{{selectedRowData}}</font></pre>
+      </td>
+    </tr>
+  </ng-container>
+</table>
+</div>
