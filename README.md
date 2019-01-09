@@ -13,15 +13,6 @@ Clicking a row will expand it to show the full, raw data.
 
 Both the ng-frontend and the nodejs server must be launched
 
-<u>Frontend:
-
-From the directory ./blockone_example/frontend/latestblocks, run this command to install dependencies:
-
-- npm install
-
-Then, run this command to serve the webpage from http://localhost:4200/:
-
-- ng serve --open
 
 <u>Backend:
 
@@ -32,6 +23,17 @@ From the directory ./blockone_example/backend/node-api, run this command to inst
 Then run this command to start the nodejs listener running on localhost port 3000:
 
 - npm start
+
+
+<u>Frontend:
+
+From the directory ./blockone_example/frontend/latestblocks, run this command to install dependencies:
+
+- npm install
+
+Then, run this command to serve the webpage from http://localhost:4200/:
+
+- ng serve --open
 
 ___
 
