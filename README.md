@@ -22,3 +22,10 @@ from the directory ./blockone_example/backend/node-api, run this command to star
 npm start
 
 Then, point the browser to http://localhost:4200/ to start the page.  Clicking the Load button will load only the latest 10 blocks on the eosio blockchain.
+
+
+# About:
+
+The frontend was created using angular-cli, then modified for the requirements
+
+The nodejs server was created using express generator, and modified to talk to the EOSJS API.
